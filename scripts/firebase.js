@@ -16,6 +16,6 @@ firebase.initializeApp(firebaseConfig);
 
 // different comment section different code 
 
-let comment_section_special_code = "learning_page1";
+let comment_section_special_code = "learning_page";
 
 
