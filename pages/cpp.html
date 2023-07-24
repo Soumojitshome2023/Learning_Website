@@ -136,6 +136,27 @@
         <button onclick="page_open(29)" class="topic">
             C++ OOP
         </button>
+        <button onclick="page_open(30)" class="topic">
+            C++ Class Methods
+        </button>
+        <button onclick="page_open(31)" class="topic">
+            C++ Constructors
+        </button>
+        <button onclick="page_open(32)" class="topic">
+            C++ Access Specifiers
+        </button>
+        <button onclick="page_open(33)" class="topic">
+            C++ Encapsulation
+        </button>
+        <button onclick="page_open(34)" class="topic">
+            C++ Inheritance
+        </button>
+        <button onclick="page_open(35)" class="topic">
+            C++ Files
+        </button>
+        <button onclick="page_open(36)" class="topic">
+            C++ Exceptions
+        </button>
 
 
     </section>
@@ -2533,16 +2554,754 @@ Ford Mustang 1969
 
 
         <!-- ============================Topic 30============================ -->
+        <div class="detail" id="30">
+            <p class="heading">C++ Class Methods</p>
+            <p class="desc">Methods are functions that belongs to the class.
+                <br><br>
+                There are two ways to define functions that belongs to a class:
+                <br><br>
+
+                Inside class definition
+                <br><br>
+                Outside class definition
+                <br><br>
+                In the following example, we define a function inside the class, and we name it "myMethod".
+                <br><br>
+
+                Note: You access methods just like you access attributes; by creating an object of the class and using
+                the dot syntax (.):
+            </p>
+
+            <div class="code">
+                <pre>
+                    <code class="cpp">
+Inside Example
+
+#include &lt;iostream&gt;
+using namespace std;
+
+class MyClass {         // The class
+  public:               // Access specifier
+    void myMethod() {   // Method/function
+      cout << "Hello World!";
+    }
+};
+
+int main() {
+  MyClass myObj;     // Create an object of MyClass
+  myObj.myMethod();  // Call the method
+  return 0;
+}
+output : Hello World!                    
+                    </code>
+                </pre>
+            </div>
+            <div class="code">
+                <pre>
+                    <code class="cpp">
+Outside Example
+
+#include &lt;iostream&gt;
+using namespace std;
+
+class MyClass {         // The class
+  public:               // Access specifier
+    void myMethod();    // Method/function declaration
+};
+
+// Method/function definition outside the class
+void MyClass::myMethod() {
+  cout << "Hello World!";
+}
+
+int main() {
+  MyClass myObj;     // Create an object of MyClass
+  myObj.myMethod();  // Call the method
+  return 0;
+}
+
+output : Hello World!                    
+                    </code>
+                </pre>
+            </div>
+            <p class="heading">Parameters</p>
+            <p class="desc">You can also add parameters:</p>
+
+            <div class="code">
+                <pre>
+                    <code class="cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+class Car {
+  public:
+    int speed(int maxSpeed);
+};
+
+int Car::speed(int maxSpeed) {
+  return maxSpeed;
+}
+
+int main() {
+  Car myObj;
+  cout << myObj.speed(200);
+  return 0;
+}
+output : 200                         
+                    </code>
+                </pre>
+            </div>
+        </div>
 
 
 
+        <!-- ============================Topic 31============================ -->
+        <div class="detail" id="31">
+            <p class="heading">C++ Constructors</p>
+            <p class="desc">A constructor in C++ is a special method that is automatically called when an object of a
+                class is created.
+                <br><br>
+                To create a constructor, use the same name as the class, followed by parentheses ():
+            </p>
+
+            <div class="code">
+                <pre>
+                    <code class="cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+class MyClass {     // The class
+  public:           // Access specifier
+    MyClass() {     // Constructor
+      cout << "Hello World!";
+    }
+};
+
+int main() {
+  MyClass myObj;    // Create an object of MyClass (this will call the constructor)
+  return 0;
+}
+output : Hello World!                   
+                    </code>
+                </pre>
+            </div>
+            <p class="heading">Constructor Parameters</p>
+            <p class="desc">Constructors can also take parameters (just like regular functions), which can be useful for
+                setting initial values for attributes.
+                <br><br>
+                The following class have brand, model and year attributes, and a constructor with different parameters.
+                Inside the constructor we set the attributes equal to the constructor parameters (brand=x, etc). When we
+                call the constructor (by creating an object of the class), we pass parameters to the constructor, which
+                will set the value of the corresponding attributes to the same:
+            </p>
+
+            <div class="code">
+                <pre>
+                    <code class="cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+class Car {        // The class
+  public:          // Access specifier
+    string brand;  // Attribute
+    string model;  // Attribute
+    int year;      // Attribute
+    Car(string x, string y, int z) {  // Constructor with parameters
+      brand = x;
+      model = y;
+      year = z;
+    }
+};
+
+int main() {
+  // Create Car objects and call the constructor with different values
+  Car carObj1("BMW", "X5", 1999);
+  Car carObj2("Ford", "Mustang", 1969);
+
+  // Print values
+  cout << carObj1.brand << " " << carObj1.model << " " << carObj1.year << "\n";
+  cout << carObj2.brand << " " << carObj2.model << " " << carObj2.year << "\n";
+  return 0;
+}
+
+output : 
+BMW X5 1999
+Ford Mustang 1969
+                    </code>
+                </pre>
+            </div>
+            <div class="code">
+                <pre>
+                    <code class="cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+class Car {        // The class
+  public:          // Access specifier
+    string brand;  // Attribute
+    string model;  // Attribute
+    int year;      // Attribute
+    Car(string x, string y, int z); // Constructor declaration
+};
+
+// Constructor definition outside the class
+Car::Car(string x, string y, int z) {
+  brand = x;
+  model = y;
+  year = z;
+}
+
+int main() {
+  // Create Car objects and call the constructor with different values
+  Car carObj1("BMW", "X5", 1999);
+  Car carObj2("Ford", "Mustang", 1969);
+
+  // Print values
+  cout << carObj1.brand << " " << carObj1.model << " " << carObj1.year << "\n";
+  cout << carObj2.brand << " " << carObj2.model << " " << carObj2.year << "\n";
+  return 0;
+}
+
+
+output : 
+BMW X5 1999
+Ford Mustang 1969
+                    </code>
+                </pre>
+            </div>
+        </div>
+
+
+        <!-- ============================Topic 32============================ -->
+        <div class="detail" id="32">
+            <p class="heading">C++ Access Specifiers</p>
+            <p class="desc">By now, you are quite familiar with the public keyword that appears in all of our class
+                examples:</p>
+
+            <div class="code">
+                <pre>
+                    <code class="cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+class MyClass {   // The class
+  public:         // Public access specifier
+    int x;        // Public attribute (int variable)
+};
+
+int main() {
+  MyClass myObj;  // Create an object of MyClass
+
+  // Access attributes and set values
+  myObj.x = 15;
+
+  // Print values
+  cout << myObj.x; 
+  return 0;
+}
+output : 15                    
+                    </code>
+                </pre>
+            </div>
+
+            <p class="desc">In C++, there are three access specifiers:
+                <br>
+                public - members are accessible from outside the class
+                <br>
+                private - members cannot be accessed (or viewed) from outside the class
+                <br>
+                protected - members cannot be accessed from outside the class, however, they can be accessed in
+                inherited classes. You will learn more about Inheritance later.
+                <br>
+                In the following example, we demonstrate the differences between public and private members:
+            </p>
+
+            <div class="code">
+                <pre>
+                    <code class="cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+class MyClass {
+  public:    // Public access specifier
+    int x;   // Public attribute
+  private:   // Private access specifier
+    int y;   // Private attribute
+};
+
+int main() {
+  MyClass myObj;
+  myObj.x = 25;  // Allowed (x is public)
+  myObj.y = 50;  // Not allowed (y is private)
+  return 0;
+}
+output : In function 'int main()':
+Line 8: error: 'int MyClass::y' is private
+Line 14: error: within this context                           
+                    </code>
+                </pre>
+            </div>
+
+            <p class="desc">Note: By default, all members of a class are private if you don't specify an access
+                specifier:</p>
+
+            <div class="code">
+                <pre>
+                    <code class="cpp">
+class MyClass {
+  int x;   // Private attribute
+  int y;   // Private attribute
+};                        
+                    </code>
+                </pre>
+            </div>
+        </div>
+
+
+        <!-- ============================Topic 33============================ -->
+        <div class="detail" id="33">
+            <p class="heading">C++ Encapsulation</p>
+            <p class="desc">The meaning of Encapsulation, is to make sure that "sensitive" data is hidden from users. To
+                achieve this, you must declare class variables/attributes as private (cannot be accessed from outside
+                the class). If you want others to read or modify the value of a private member, you can provide public
+                get and set methods.</p>
+            <br><br>
+            <p class="heading">Access Private Members</p>
+            <p class="desc">To access a private attribute, use public "get" and "set" methods:</p>
+
+            <div class="code">
+                <pre>
+                    <code class="cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+class Employee {
+  private:
+    int salary;
+
+  public:
+    void setSalary(int s) {
+      salary = s;
+    }
+    int getSalary() {
+      return salary;
+    }
+};
+
+int main() {
+  Employee myObj;
+  myObj.setSalary(50000);
+  cout << myObj.getSalary();
+  return 0;
+}
+output : 50000             
+                    </code>
+                </pre>
+            </div>
+            <p class="desc">Example explained
+                <br><br>
+                The salary attribute is private, which have restricted access.
+                <br><br>
+
+                The public setSalary() method takes a parameter (s) and assigns it to the salary attribute (salary = s).
+                <br><br>
+
+                The public getSalary() method returns the value of the private salary attribute.
+                <br><br>
+
+                Inside main(), we create an object of the Employee class. Now we can use the setSalary() method to set
+                the value of the private attribute to 50000. Then we call the getSalary() method on the object to return
+                the value.
+            </p>
+        </div>
+
+
+        <!-- ============================Topic 34============================ -->
+        <div class="detail" id="34">
+            <p class="heading">C++ Inheritance</p>
+            <p class="desc">In C++, it is possible to inherit attributes and methods from one class to another. We group
+                the "inheritance concept" into two categories:
+                <br><br>
+                derived class (child) - the class that inherits from another class
+                <br><br>
+                base class (parent) - the class being inherited from
+                <br><br>
+                To inherit from a class, use the : symbol.
+                <br><br>
+
+                In the example below, the Car class (child) inherits the attributes and methods from the Vehicle class
+                (parent):
+            </p>
+
+            <div class="code">
+                <pre>
+                    <code class="cpp">
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+// Base class
+class Vehicle {
+  public: 
+    string brand = "Ford";
+    void honk() {
+      cout << "Tuut, tuut! \n" ;
+    }
+};
+
+// Derived class
+class Car: public Vehicle {
+  public: 
+    string model = "Mustang";
+};
+
+int main() {
+  Car myCar;
+  myCar.honk();
+  cout << myCar.brand + " " + myCar.model;
+  return 0;
+}
+
+output : 
+Tuut, tuut!
+Ford Mustang              
+                    </code>
+                </pre>
+            </div>
+            <p class="heading">C++ Multilevel Inheritance</p>
+            <p class="desc">A class can also be derived from one class, which is already derived from another class.
+
+                In the following example, MyGrandChild is derived from class MyChild (which is derived from MyClass).
+            </p>
+
+            <div class="code">
+                <pre>
+                    <code class="cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+// Parent class
+class MyClass {
+  public: 
+    void myFunction() {
+      cout << "Some content in parent class." ;
+    }
+};
+
+// Child class
+class MyChild: public MyClass {
+};
+
+// Grandchild class 
+class MyGrandChild: public MyChild {
+};
+
+int main() {
+  MyGrandChild myObj;
+  myObj.myFunction();
+  return 0;
+}
+Output : 
+Some content in parent class.                     
+                    </code>
+                </pre>
+            </div>
+            <p class="heading">C++ Multiple Inheritance</p>
+            <p class="desc">A class can also be derived from more than one base class, using a comma-separated list:</p>
+
+            <div class="code">
+                <pre>
+                    <code class="cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+// Base class
+class MyClass {
+  public:
+    void myFunction() {
+      cout << "Some content in parent class.\n" ;
+    }
+};
+
+// Another base class
+class MyOtherClass {
+  public:
+    void myOtherFunction() {
+      cout << "Some content in another class.\n" ;
+    }
+};
+
+// Derived class
+class MyChildClass: public MyClass, public MyOtherClass {
+};
+
+int main() {
+  MyChildClass myObj;
+  myObj.myFunction();
+  myObj.myOtherFunction();
+  return 0;
+}
+output : 
+Some content in parent class.
+Some content in another class.                          
+                    </code>
+                </pre>
+            </div>
+            <p class="heading">C++ Inheritance Access</p>
+            <p class="desc">You learned from the Access Specifiers chapter that there are three specifiers available in
+                C++. Until now, we have only used public (members of a class are accessible from outside the class) and
+                private (members can only be accessed within the class). The third specifier, protected, is similar to
+                private, but it can also be accessed in the inherited class:</p>
+
+            <div class="code">
+                <pre>
+                    <code class="cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+// Base class
+class Employee  {
+  protected:  // Protected access specifier
+    int salary;
+};
+
+// Derived class
+class Programmer: public Employee {
+  public:
+    int bonus;
+    void setSalary(int s) {
+      salary = s;
+    }
+    int getSalary() {
+      return salary;
+    }
+};
+
+int main() {
+  Programmer myObj;
+  myObj.setSalary(50000);
+  myObj.bonus = 15000;
+  cout << "Salary: " << myObj.getSalary() << "\n";
+  cout << "Bonus: " << myObj.bonus << "\n";
+  return 0;
+}
+output : 
+Salary: 50000
+Bonus: 15000                         
+                    </code>
+                </pre>
+            </div>
+        </div>
+
+
+        <!-- ============================Topic 35============================ -->
+        <div class="detail" id="35">
+            <p class="heading">C++ Files</p>
+            <p class="desc">The fstream library allows us to work with files.
+                <br>
+                <br>
+                To use the fstream library, include both the standard &lt;iostream&gt; AND the &lt;fstream&gt; header
+                file:
+            </p>
+
+            <div class="code">
+                <pre>
+                    <code class="cpp">
+            
+#include &lt;iostream&gt;
+#include &lt;fstream&gt;             
+                    </code>
+                </pre>
+            </div>
+            <p class="desc">There are three classes included in the fstream library, which are used to create, write or
+                read files:
+                <br><br>
+                ofstream : Creates and writes to files
+                <br><br>
+                ifstream : Reads from files
+                <br><br>
+                fstream : A combination of ofstream and ifstream: creates, reads, and writes to files
+            </p>
+            <p class="heading">Create and Write To a File</p>
+            <p class="desc">To create a file, use either the ofstream or fstream class, and specify the name of the
+                file.
+                <br><br>
+                To write to the file, use the insertion operator (<<).< /p>
+
+                    <div class="code">
+                        <pre>
+                            <code class="cpp">
+                    
+#include &lt;iostream&gt;
+#include &lt;fstream&gt;
+using namespace std;
+
+int main() {
+  // Create and open a text file
+  ofstream MyFile("filename.txt");
+
+  // Write to the file
+  MyFile << "Files can be tricky, but it is fun enough!";
+
+  // Close the file
+  MyFile.close();
+}                     
+                            </code>
+                        </pre>
+                    </div>
+                    <p class="heading">Read a File</p>
+                    <p class="desc">To read from a file, use either the ifstream or fstream class, and the name of the
+                        file.
+                        <br>
+                        Note that we also use a while loop together with the getline() function (which belongs to the
+                        ifstream class) to read the file line by line, and to print the content of the file:
+                    </p>
+
+                    <div class="code">
+                        <pre>
+                            <code class="cpp">
+#include &lt;iostream&gt;
+#include &lt;fstream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main () {
+  // Create a text file
+  ofstream MyWriteFile("filename.txt");
+
+  // Write to the file
+  MyWriteFile << "Files can be tricky, but it is fun enough!";
+ 
+  // Close the file
+  MyWriteFile.close();
+
+  // Create a text string, which is used to output the text file
+  string myText;
+
+  // Read from the text file
+  ifstream MyReadFile("filename.txt");
+
+  // Use a while loop together with the getline() function to read the file line by line
+  while (getline (MyReadFile, myText)) {
+    // Output the text from the file
+    cout << myText;
+  }
+
+  // Close the file
+  MyReadFile.close();
+}
+output : 
+Files can be tricky, but it is fun enough!                          
+                            </code>
+                        </pre>
+                    </div>
+        </div>
 
 
 
+        <!-- ============================Topic 36============================ -->
+        <div class="detail" id="36">
+            <p class="heading">C++ Exceptions</p>
+            <p class="desc">When executing C++ code, different errors can occur: coding errors made by the programmer,
+                errors due to wrong input, or other unforeseeable things.
+                <br><br>
+                When an error occurs, C++ will normally stop and generate an error message. The technical term for this
+                is: C++ will throw an exception (throw an error).
+
+            </p>
+            <p class="heading">C++ try and catch</p>
+            <p class="desc">Exception handling in C++ consist of three keywords: try, throw and catch:
+                <br><br>
+
+                The try statement allows you to define a block of code to be tested for errors while it is being
+                executed.
+                <br><br>
+
+                The throw keyword throws an exception when a problem is detected, which lets us create a custom error.
+                <br><br>
+
+                The catch statement allows you to define a block of code to be executed, if an error occurs in the try
+                block.
+                <br><br>
+
+                The try and catch keywords come in pairs:
+
+            </p>
+
+            <div class="code">
+                <pre>
+                    <code class="cpp">
+try {
+  // Block of code to try
+  throw exception; // Throw an exception when a problem arise
+}
+catch () {
+  // Block of code to handle errors
+}             
+                    </code>
+                </pre>
+            </div>
+            <div class="code">
+                <pre>
+                    <code class="cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+  try {
+    int age = 15;
+    if (age >= 18) {
+      cout << "Access granted - you are old enough.";
+    } else {
+      throw (age);
+    }
+  }
+  catch (int myNum) {
+    cout << "Access denied - You must be at least 18 years old.\n";
+    cout << "Age is: " << myNum;  
+  }
+  return 0;
+}
+output  : 
+Access denied - You must be at least 18 years old.
+Age is: 15            
+                    </code>
+                </pre>
+            </div>
+            <p class="heading">Handle Any Type of Exceptions (...)</p>
+            <p class="desc">If you do not know the throw type used in the try block, you can use the "three dots" syntax
+                (...) inside the catch block, which will handle any type of exception:</p>
+
+            <div class="code">
+                <pre>
+                    <code class="cpp">
+                    
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+  try {
+    int age = 15;
+    if (age >= 18) {
+      cout << "Access granted - you are old enough.";
+    } else {
+      throw 505;
+    }
+  }
+  catch (...) {
+    cout << "Access denied - You must be at least 18 years old.\n";
+  }
+  return 0;
+}
+output : Access denied - You must be at least 18 years old.
+                    </code>
+                </pre>
+            </div>
+        </div>
 
 
 
-
+        
 
 
 
